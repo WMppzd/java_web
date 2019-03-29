@@ -3,11 +3,13 @@ package com.my.dao;
 import com.my.domain.Category;
 import com.my.domain.Product;
 import com.my.utils.DataSourceUtils;
+import com.my.vo.Condition;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -57,5 +59,25 @@ public class AdminProductListDao {
         String sql="select * from product where pid=?";
         Product product=queryRunner.query(sql,new BeanHandler<Product>(Product.class),pid);
         return  product;
+    }
+
+    public List<Product> getListByCondition(Condition condition) throws SQLException {
+        List<String> con=new ArrayList<String>();
+        QueryRunner queryRunner=new QueryRunner(DataSourceUtils.getDataSource());
+        String sql="select * from product where 1=1 ";
+        if(condition.getPname()!=null&&!condition.getPname().trim().equals("")){
+            sql+="and pname like ?";
+            con.add("%"+condition.getPname().trim()+"%");
+        }
+        if(condition.getIsHot()!=null&&!condition.getIsHot().equals("")){
+            sql+="and is_hot = ?";
+            con.add(condition.getIsHot());
+        }
+        if(condition.getCategory()!=null&&!condition.getCategory().equals("")){
+            sql+="and cid= ?";
+            con.add(condition.getCategory());
+        }
+        System.out.print(sql);
+        return queryRunner.query(sql,new BeanListHandler<Product>(Product.class),con.toArray());
     }
 }

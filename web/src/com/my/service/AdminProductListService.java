@@ -3,6 +3,7 @@ package com.my.service;
 import com.my.dao.AdminProductListDao;
 import com.my.domain.Category;
 import com.my.domain.Product;
+import com.my.vo.Condition;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -41,5 +42,10 @@ public class AdminProductListService {
         AdminProductListDao adminProductListDao=new AdminProductListDao();
         Product product=adminProductListDao.getDetails(pid);
         return  product;
+    }
+
+    public List<Product> getListByCondition(Condition condition) throws SQLException {
+        AdminProductListDao adminProductListDao=new AdminProductListDao();
+        return adminProductListDao.getListByCondition(condition);
     }
 }

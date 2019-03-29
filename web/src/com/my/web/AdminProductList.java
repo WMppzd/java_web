@@ -1,5 +1,6 @@
 package com.my.web;
 
+import com.my.domain.Category;
 import com.my.domain.Product;
 import com.my.service.AdminProductListService;
 
@@ -16,11 +17,18 @@ public class AdminProductList extends javax.servlet.http.HttpServlet {
         System.out.print("来请求过了");
         AdminProductListService product=new AdminProductListService();
         List<Product> list =null;
+        List<Category> category=null;
         try {
             list=product.getAllList();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        try {
+            category= product.getCateGory();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        request.setAttribute("category",category);
         request.setAttribute("list",list);
         System.out.println(list);
         request.getRequestDispatcher("/admin/product/list.jsp").forward(request,response);
