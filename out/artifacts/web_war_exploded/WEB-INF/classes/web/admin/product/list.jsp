@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="${pageContext.request.contextPath}/css/Style1.css"
 	rel="stylesheet" type="text/css" />
+	<script language="javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js"></script>
 <script language="javascript"
 	src="${pageContext.request.contextPath}/js/public.js"></script>
 <script type="text/javascript">
@@ -21,13 +22,30 @@
             function editProduct(pid){
                 window.location.href = "${pageContext.request.contextPath}/editUI?pid="+pid;
             }
+            $(function(){
+                $("#isHot option[value='${condition.isHot}']").prop("selected",true);
+                $("#category option[value='${condition.category}']").prop("selected",true);
+            });
 		</script>
 </HEAD>
 <body>
 	<br>
 	<form id="Form1" name="Form1"
-		action="${pageContext.request.contextPath}/user/list.jsp"
+		action="${pageContext.request.contextPath}/getListByCondition"
 		method="post">
+		商品名称：<input type="text" name="pname">
+		是否热门：<select name="isHot" id="isHot">
+		<option value="">全部</option>
+		<option value="1">是</option>
+		<option value="0">否</option>
+	</select>
+		类型：<select name="category" id="category">
+		<option value="">全部</option>
+		<c:forEach items="${category}" var="category" >
+			<option value="${category.cid}">${category.cname}</option>
+		</c:forEach>
+	</select>
+		<button type="submit">搜索</button>
 		<table cellSpacing="1" cellPadding="0" width="100%" align="center"
 			bgColor="#f5fafe" border="0">
 			<TBODY>

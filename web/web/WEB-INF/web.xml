@@ -60,4 +60,12 @@
         <servlet-name>EditProductList</servlet-name>
         <url-pattern>/editList</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>getListByCondition</servlet-name>
+        <servlet-class>com.my.web.ProductListByConditionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getListByCondition</servlet-name>
+        <url-pattern>/getListByCondition</url-pattern>
+    </servlet-mapping>
 </web-app>
