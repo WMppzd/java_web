@@ -68,4 +68,12 @@
         <servlet-name>getListByCondition</servlet-name>
         <url-pattern>/getListByCondition</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>getProductListByPageServlet</servlet-name>
+        <servlet-class>com.my.web.getProductListByPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getProductListByPageServlet</servlet-name>
+        <url-pattern>/getList</url-pattern>
+    </servlet-mapping>
 </web-app>
