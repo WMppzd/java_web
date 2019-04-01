@@ -69,11 +69,19 @@
         <url-pattern>/getListByCondition</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>getProductListByPageServlet</servlet-name>
-        <servlet-class>com.my.web.getProductListByPageServlet</servlet-class>
+        <servlet-name>checkUsername</servlet-name>
+        <servlet-class>com.my.web.UsernameIsExistServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>getProductListByPageServlet</servlet-name>
-        <url-pattern>/getList</url-pattern>
+        <servlet-name>checkUsername</servlet-name>
+        <url-pattern>/checkUsername</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>searchKeyWord</servlet-name>
+        <servlet-class>com.my.web.SearchKeyWordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>searchKeyWord</servlet-name>
+        <url-pattern>/searchKeyWord</url-pattern>
     </servlet-mapping>
 </web-app>

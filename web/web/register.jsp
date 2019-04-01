@@ -8,6 +8,33 @@
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script>
+	$(function () {
+        $('#username').blur(function () {
+			var username=$("#username").val();
+			if (username.length>0){
+			    $.post(
+					"${pageContext.request.contextPath}/checkUsername",
+					{"username":username},
+					function(data){
+                            var isExist = data.isExist;
+                            console.log(data)
+                        if(!isExist){
+                            //该用户存在
+                            usernameInfo = "该用户名已经存在";
+                            $("#usernameInfo").css("color","red");
+                        }else{
+                            usernameInfo = "该用户可以使用"
+                            $("#usernameInfo").css("color","green");
+                        }
+                        $("#usernameInfo").html(usernameInfo);
+                    },
+					'json'
+				)
+			}
+        })
+    })
+</script>
 <!-- 引入自定义css文件 style.css -->
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 
@@ -48,6 +75,7 @@ font {
 						<div class="col-sm-6">
 							<input type="text" class="form-control" id="username"
 								placeholder="请输入用户名">
+							<span id="usernameInfo"></span>
 						</div>
 					</div>
 					<div class="form-group">
